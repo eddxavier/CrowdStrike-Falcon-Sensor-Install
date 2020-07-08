@@ -50,7 +50,7 @@ if ($service -eq $null) {
  $SensorVersionJSON = $webClient.DownloadString($GetSensorsURL) | ConvertFrom-JsonString
  $LatestVersion = $SensorVersionJSON.resources | Select -Skip 1 | Select -First 1
  $LatestVersionSHA256 = $LatestVersion.sha256
- Set-Content -Path "C:\CsInstall\sha256" -Value $LatestVersionSHA256
+ Set-Content -Path "$filepath\sha256" -Value $LatestVersionSHA256
  $SensorURL = "https://api.crowdstrike.com/sensors/entities/download-installer/v1?id=$LatestVersionSHA256"
  $webClient.DownloadFile($SensorURL,$fullfilepath)
 }
