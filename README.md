@@ -8,7 +8,7 @@ The task verifies whether the sensor is installed by check the presence of Crowd
 
 Even though some functions are present on latest Powershell versions as native cmdlets, they are added to provide compatibility up to Powershell v2.0. 
 
-Mechanims were added to prevent 
+Any improvements or comments are more than welcome!
 
 # Requirements:
 - This script requires a minimum version 2.0 of PowerShell to run.
