@@ -56,7 +56,7 @@ if ($service -eq $null) {
 }
 ##Validates file hash to proceed with install, deletes if corrupted.
  function CheckInstallHash {
- $ExpectedSHA256 = Get-Content $filepath\sha256"
+ $ExpectedSHA256 = Get-Content "$filepath\sha256"
  $DownloadedSHA256 = Get-Hash -Path $fullfilepath
  if ($DownloadedSHA256.Hash -eq $ExpectedSHA256) { 
  Start-Process -FilePath $fullfilepath -ArgumentList "/install /quiet /norestart CID=$CID"
