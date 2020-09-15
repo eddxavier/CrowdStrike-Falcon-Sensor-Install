@@ -2,10 +2,10 @@ $service = Get-Service -Name csagent -ErrorAction SilentlyContinue
 $filepath = "C:\Windows\Temp\CsInstall\" ## Custom folder where packages should be downloaded to
 $filename = "WindowsSensor.exe"
 $fullfilepath = $filepath + $filename
-$CID="" ## CID available on https://falcon.crowdstrike.com/hosts/sensor-downloads
-$client_id = "" ## Obtain API keys here https://falcon.crowdstrike.com/support/api-clients-and-keys
+$CID="" ## CID available on https://falcon.crowdstrike.com/hosts/sensor-downloads, URL might differ according to cloud region, this was considering US-1
+$client_id = "" ## Obtain API keys here https://falcon.crowdstrike.com/support/api-clients-and-keys, URL might differ according to cloud region, this was considering US-1
 $client_secret = ""
-$GetSensorsURL = "https://api.crowdstrike.com/sensors/combined/installers/v1?filter=platform%3A%22windows%22"
+$GetSensorsURL = "https://api.crowdstrike.com/sensors/combined/installers/v1?filter=platform%3A%22windows%22" ##URL might differ according to cloud region, this was considering US-1
 if ($service -eq $null) {
  ## Imports hash validation to comply with PS 2.0
  function Get-Hash{
@@ -51,7 +51,7 @@ if ($service -eq $null) {
  $LatestVersion = $SensorVersionJSON.resources | Select -Skip 1 | Select -First 1
  $LatestVersionSHA256 = $LatestVersion.sha256
  Set-Content -Path "$filepath\sha256" -Value $LatestVersionSHA256
- $SensorURL = "https://api.crowdstrike.com/sensors/entities/download-installer/v1?id=$LatestVersionSHA256"
+ $SensorURL = "https://api.crowdstrike.com/sensors/entities/download-installer/v1?id=$LatestVersionSHA256" ##URL might differ according to cloud region, this was considering US-1
  $webClient.DownloadFile($SensorURL,$fullfilepath)
 }
 ##Validates file hash to proceed with install, deletes if corrupted.
